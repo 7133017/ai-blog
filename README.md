@@ -10,6 +10,8 @@
 - 🎨 响应式设计：适配手机/桌面端，极简美观的默认样式
 - 🔐 自定义登录路径：避免默认后台路径被扫描
 
+<img width="728" height="785" alt="QQ20251217-085622" src="https://github.com/user-attachments/assets/043c62c7-ac36-4d7b-b9e8-dfb1e51de0c3" />
+
 ## 快速开始
 ### 环境要求
 - PHP 7.2+
