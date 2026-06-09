@@ -1,5 +1,3 @@
----
-
 # AI‑Blog 🧠
 
 > **一个极简、免配置、开箱即用的 PHP 博客系统**  
@@ -9,8 +7,6 @@
 <img width="1059" height="646" alt="image" src="https://github.com/user-attachments/assets/60c7b649-dd64-4e28-8dfa-fd7d3a0d11b4" />
 <img width="984" height="834" alt="image" src="https://github.com/user-attachments/assets/6cefa552-1822-4dce-a131-94c00a888055" />
 
-
----
 
 ## ✨ 核心特性
 
