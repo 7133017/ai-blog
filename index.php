@@ -85,7 +85,7 @@ if (!file_exists(CFG_FILE)) {
     }
     $sv = fn($k,$d='') => htmlspecialchars($_POST[$k] ?? $d);
     $so = fn($v,$t) => $v===$t ? ' selected' : '';
-    ?><!DOCTYPE html><html><head><meta charset="utf-8"><title>初始化博客</title>
+    ?><!DOCTYPE html><html><head><meta charset="utf-8"><title>初始化</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 body{background:#0d1117;color:#c9d1d9;max-width:440px;margin:4rem auto;padding:1rem;font:14px/1.6 'SFMono-Regular',Consolas,monospace}
@@ -96,7 +96,7 @@ button{margin-top:1.5rem;width:100%;padding:.6em;font:inherit;font-weight:bold;b
 button:hover{background:#2ea44f}
 #db-remote{display:none;margin-top:.4rem}
 </style></head><body>
-<h2>[#] 初始化博客</h2>
+<h2>[#] 初始化</h2>
 <form method="post">
   <label>站点名称</label><input name="site_name" value="<?=$sv('site_name')?>" required>
   <label>管理员用户名</label><input name="admin_user" value="<?=$sv('admin_user')?>" required>
@@ -256,13 +256,13 @@ $site_name = h($cfg['site_name'] ?? '');
 <?php if ($show): ?><meta name="description" content="<?= h(mb_substr(strip_tags($show['content']),0,120)) ?>"><?php endif; ?>
 <style>
 :root {
-  --term-bg: #0d1117;       /* 核心背景黑 */
-  --term-txt: #c9d1d9;      /* 文本主色白 */
-  --term-ac: #58a6ff;       /* 链接高亮蓝 */
-  --term-dim: #8b949e;      /* 注释/元数据灰 */
-  --term-success: #7ee787;  /* 提示符/公开绿 */
-  --term-warn: #f0883e;     /* 警告/草稿橙 */
-  --term-line: #21262d;     /* 极细网格线 */
+  --term-bg: #0d1117;
+  --term-txt: #c9d1d9;
+  --term-ac: #58a6ff;
+  --term-dim: #8b949e;
+  --term-success: #7ee787;
+  --term-warn: #f0883e;
+  --term-line: #21262d;
   --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
@@ -280,60 +280,53 @@ a { color: var(--term-ac); text-decoration: none; }
 a:hover { text-decoration: underline; background: rgba(88, 166, 255, 0.1); }
 
 .terminal { max-width: 800px; margin: 0 auto; }
-
-/* ── Shell Header ── */
 .term-header { padding-bottom: 1rem; border-bottom: 1px dashed var(--term-line); margin-bottom: 2.5rem; }
 .term-header .prompt { color: var(--term-success); font-weight: bold; }
 .term-header .cmd { color: #fff; font-weight: bold; }
 .term-header .comment { color: var(--term-dim); display: block; font-size: 12px; margin-top: 0.2rem; }
 
-/* ── Section & Rows ── */
 .term-section { margin-bottom: 2.5rem; }
 .term-year { color: var(--term-warn); font-weight: bold; margin-bottom: 1rem; font-size: 15px; }
-.term-row { display: flex; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px solid var(--term-line); gap: 1.5rem; overflow: auto; }
+.term-row { display: flex; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px solid var(--term-line); gap: 1.5rem; }
 .term-row:last-child { border-bottom: none; }
 .term-meta { color: var(--term-dim); white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
 .term-title { font-weight: bold; white-space: nowrap; }
 .term-desc { color: var(--term-dim); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
 
-/* ── Tags / Draft Status ── */
 .term-status { color: var(--term-warn); font-size: 11px; font-weight: bold; border: 1px solid var(--term-warn); padding: 0 4px; border-radius: 3px; text-transform: uppercase; margin-right: 4px; }
 .term-row.draft .term-title { color: var(--term-dim); text-decoration: line-through; }
 .term-tag-link { color: var(--term-success) !important; background: rgba(126,231,135,0.08); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
 
-/* ── Article View ── */
 .art-date { color: var(--term-dim); font-size: 13px; margin-bottom: 0.5rem; }
 .art-title { font-size: 26px; color: #fff; font-weight: bold; margin-bottom: 1.5rem; }
 .art-meta-bar { padding-bottom: 1rem; border-bottom: 1px dashed var(--term-line); margin-bottom: 2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
 article { font-size: 15px; line-height: 1.8; color: #e6edf3; white-space: pre-wrap; word-break: break-word; }
 
-/* ── Hardcore Cards (Login & Edit) ── */
 .term-field { margin-bottom: 1.2rem; }
-.term-field:last-child { margin-bottom: 0; }
 .term-field label { display: block; color: var(--term-dim); font-size: 12px; margin-bottom: 0.4rem; }
-.term-card input[type=text], .term-card input[type=password], .term-card input[type=datetime-local], .term-card textarea {
-  width: 100%; border: 1px solid var(--term-line); background: var(--term-bg); color: #fff; font-family: var(--font-mono); font-size: 14px; padding: 0.6rem; border-radius: 6px; outline: none; box-sizing: border-box;
+input[type=text], input[type=password], input[type=datetime-local], textarea {
+  width: 100%; border: 1px solid var(--term-line); background: var(--term-bg); color: #fff; font-family: var(--font-mono); font-size: 14px; padding: 0.6rem; border-radius: 6px; outline: none;
 }
-.term-card input:focus, .term-card textarea:focus { border-color: var(--term-ac); }
-.term-card textarea { min-height: 280px; resize: vertical; line-height: 1.6; }
+input:focus, textarea:focus { border-color: var(--term-ac); }
+textarea { min-height: 280px; resize: vertical; line-height: 1.6; }
 
-/* ── Buttons ── */
 .btn-term { background: #21262d; color: var(--term-ac); border: 1px solid var(--term-line); padding: 0.5rem 1.2rem; font-family: var(--font-mono); font-size: 13px; font-weight: bold; border-radius: 6px; cursor: pointer; }
 .btn-term:hover { background: var(--term-line); color: #fff; }
 .btn-submit { background: #238636; color: #fff; border: 1px solid #2ea44f; }
 .btn-submit:hover { background: #2ea44f; }
 .btn-danger { color: #f85149; }
-.btn-danger:hover { background: rgba(248,81,73,0.1); color: #f85149; }
+.btn-danger:hover { background: rgba(248,81,73,0.1); }
 
-/* ── Console Footer ── */
 .term-footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px dashed var(--term-line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: var(--term-dim); font-size: 13px; }
 .term-nav { display: flex; align-items: center; gap: 0.8rem; }
 .term-nav a { color: var(--term-ac); }
 .term-nav a.active { color: #fff; font-weight: bold; pointer-events: none; }
 
-@media (max-width: 580px) {
-  .term-meta, .term-desc { display: none; }
-  .term-row { justify-content: space-between; }
+@media (max-width: 640px) {
+  .term-row { flex-direction: column; gap: 0.4rem; align-items: flex-start; overflow: auto; }
+  .term-meta { font-size: 12px; }
+  .term-desc { display: none; }
+  body { padding: max(1.5rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom)); }
 }
 </style>
 </head>
@@ -380,7 +373,7 @@ function fmt_year(int $ts): string { return date('Y', $ts); }
     <span class="comment">RESTRICTED AREA: Requires valid hash authentication credentials.</span>
   </header>
 
-  <div class="term-card" style="max-width: 400px; margin: 0 auto;">
+  <div style="max-width: 400px; margin: 0 auto; background:#161b22; border:1px solid var(--term-line); padding:1.5rem; border-radius:6px;">
     <form method="post">
       <div class="term-field">
         <label>LOGIN_USER</label>
@@ -413,14 +406,13 @@ function fmt_year(int $ts): string { return date('Y', $ts); }
     <span class="comment">Editing data layout buffer inside client-side core.</span>
   </header>
 
-  <div class="term-card">
     <form method="post" action="?a=save">
       <div class="term-field">
         <label>POST_TITLE (标题)</label>
         <input name="title" value="<?= h($e['title']) ?>" placeholder="输入文章标题..." required>
       </div>
       <div class="term-field">
-        <label>POST_CONTENT (正文 Markdown / Plaintext)</label>
+        <label>POST_CONTENT (正文)</label>
         <textarea name="content" placeholder="在此输入正文内容..." required><?= h($e['content']) ?></textarea>
       </div>
       <div class="term-field">
@@ -428,25 +420,22 @@ function fmt_year(int $ts): string { return date('Y', $ts); }
         <input name="tags" value="<?= h($e['tags_str']) ?>" placeholder="code, life, notes">
       </div>
       <div class="term-field" style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
-        <div>
-          <label>POST_TIME (发布时间)</label>
+        <div style="flex:1; min-width:200px;">
+          <label>POST_TIME</label>
           <input type="datetime-local" name="time" value="<?= date('Y-m-d\TH:i', $e['post_time']) ?>">
         </div>
-        <div style="margin-top: 1rem;">
-          <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
-            <input type="checkbox" name="public" value="1" <?= $e['public'] ? 'checked' : '' ?> style="accent-color:var(--term-success)">
-            SET_PUBLIC (公开发布)
-          </label>
-        </div>
+        <label style="margin-top:1.2rem; display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
+          <input type="checkbox" name="public" value="1" <?= $e['public'] ? 'checked' : '' ?> style="accent-color:var(--term-success)">
+          SET_PUBLIC
+        </label>
       </div>
       <input type="hidden" name="slug" value="<?= h($e['slug']) ?>">
       <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
       <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
         <button class="btn-term btn-submit">:wq (保存数据)</button>
-        <a href="<?= $is_new ? '?' : '?id='.urlencode($e['slug']) ?>" class="btn-term" style="line-height:2.3;">:q! (取消变更)</a>
+        <a href="<?= $is_new ? '?' : '?id='.urlencode($e['slug']) ?>" class="btn-term" style="line-height:2.3;">:q! (取消)</a>
       </div>
     </form>
-  </div>
 
 <?php elseif ($show): ?>
   <header class="term-header">
@@ -499,26 +488,24 @@ function fmt_year(int $ts): string { return date('Y', $ts); }
   $cur_year = '';
   foreach ($pslice as $p):
       $y = fmt_year($p['post_time']);
-      if (!$tag && $y !== $cur_year): $cur_year = $y; ?>
-      <?php if($cur_year !== date('Y')): ?></div></section><?php endif; ?> <section class="term-section">
-        <div class="term-year">[#] Year: <?= $y ?></div>
-  <?php endif; ?>
-    
+      if (!$tag && $y !== $cur_year):
+          if ($cur_year !== '') echo '</section>';
+          echo '<section class="term-section"><div class="term-year">[#] Year: ' . $y . '</div>';
+          $cur_year = $y;
+      endif;
+  ?>
     <div class="term-row <?= (is_admin() && !$p['public']) ? 'draft' : '' ?>">
       <span class="term-meta"><?= fmt_date($p['post_time']) ?></span>
-      
       <?php if (is_admin() && !$p['public']): ?><span class="term-status">draft</span><?php endif; ?>
-      
       <a class="term-title" href="?id=<?= urlencode($p['slug']) ?><?= $tag ? '&tag='.urlencode($tag) : '' ?>">
         ./<?= h($p['title']) ?>.md
       </a>
-      
       <span class="term-desc">
         <?php if($p['tags']): ?>// tags: <?= h(implode(', ', $p['tags'])) ?><?php else: ?>// no metadata description<?php endif; ?>
       </span>
     </div>
   <?php endforeach; ?>
-  <?php if (!empty($pslice)): ?></section><?php endif; ?>
+  <?php if ($cur_year !== ''): ?></section><?php endif; ?>
   
   <?php if (empty($pslice)): ?><p style="color:var(--term-dim); padding:1rem 0">// STDOUT: Empty dataset. 暂无任何公开日志</p><?php endif; ?>
 
