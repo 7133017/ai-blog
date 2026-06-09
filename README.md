@@ -4,7 +4,7 @@
 > 轻量到只有 **单个 PHP 文件**，却完整覆盖个人博客的核心需求 ✨  
 > 适合个人记录、项目文档、内网笔记、AI 自动生成站点
 <img width="727" height="689" alt="image" src="https://github.com/user-attachments/assets/3a0fabc7-118d-49db-9983-94062a9e09a2" />
-<img width="1059" height="646" alt="image" src="https://github.com/user-attachments/assets/60c7b649-dd64-4e28-8dfa-fd7d3a0d11b4" />
+<img width="942" height="688" alt="image" src="https://github.com/user-attachments/assets/919ef7ef-522e-4681-a7ae-b30d91168efb" />
 <img width="984" height="834" alt="image" src="https://github.com/user-attachments/assets/6cefa552-1822-4dce-a131-94c00a888055" />
 
 
